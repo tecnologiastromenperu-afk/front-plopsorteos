@@ -21,11 +21,12 @@ const countdownUnits = [
 
 <template>
   <section class="mt-20 mb-20">
-    <h2 class="text-2xl font-bold text-white mb-6">Sorteo segunda oportunidad</h2>
+    
 
     <div class="max-w-3xl mx-auto bg-white/20 backdrop-blur-sm rounded-[20px] p-6 text-center">
       <!-- Tarjeta de cuenta regresiva -->
       <div class="mb-6 max-w-md mx-auto">
+        <h2 class="text-2xl font-bold text-white mb-6">Sorteo segunda oportunidad</h2>
         <div class="bg-white rounded-[20px] p-6 shadow-xl">
           <div class="bg-gradient-to-r from-purple-600 to-pink-600 text-white rounded-t-[12px] -mx-6 -mt-6 mb-4 px-4 py-3">
             <span class="font-bold text-lg">FECHA DEL SORTEO</span>

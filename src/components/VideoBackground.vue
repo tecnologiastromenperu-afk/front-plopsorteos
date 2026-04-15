@@ -10,6 +10,7 @@ import fondoVideo from '@/assets/fondo.webm'
       muted
       loop
       playsinline
+      poster="@/assets/fondo.png"
     >
       <source :src="fondoVideo" type="video/webm" />
     </video>

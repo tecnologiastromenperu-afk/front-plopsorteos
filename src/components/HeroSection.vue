@@ -36,7 +36,7 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
 
         <button
           @click="emit('open-modal')"
-          class="bg-gradient-to-r from-[#00FF41] via-[#00D4FF] to-[#004f9f] text-white px-12 py-4 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100"
+          class="bg-gradient-to-r from-[#004f9f] to-[#5C068C] text-white px-12 py-4 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100"
           style="text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000"
         >
           ¡INGRESA TU CODIGO!

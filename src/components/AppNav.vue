@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { Gift, Home, Trophy } from 'lucide-vue-next'
 import type { Component } from 'vue'
-import logoCircle from '@/assets/logo-circle.svg'
+import logoCircle from '@/assets/logo_max.png'
 import type { Section } from '@/types'
 
 const props = defineProps<{ modelValue: Section }>()
@@ -15,10 +15,10 @@ const desktopItems: { section: Section; icon: Component; label: string }[] = [
 </script>
 
 <template>
-  <!-- Logo circular flotante (solo desktop) -->
-  <div class="hidden md:block fixed left-6 top-8 z-50">
-    <div class="w-20 h-20 rounded-full bg-[#3d4447] flex items-center justify-center shadow-2xl">
-      <img :src="logoCircle" alt="Logo Plopsorteos.com" class="w-14 h-14 object-contain" />
+  <!-- Logo circular flotante -->
+  <div class="fixed left-4 md:left-6 top-4 md:top-8 z-50">
+    <div class="w-50 h-16 md:w-50 md:h-16 rounded-full bg-[#e6edf0] flex items-center justify-center shadow-2xl bg-white/30">
+      <img :src="logoCircle" alt="Logo Plopsorteos.com" class="w-40 md:w-40 h-20 md:h-20 object-contain" />
     </div>
   </div>
 
