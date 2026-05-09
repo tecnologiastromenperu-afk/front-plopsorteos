@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import fondoVideo from '@/assets/fondo.webm'
+
+const props = withDefaults(
+  defineProps<{
+    videoOpacity?: number
+    overlayOpacity?: number
+  }>(),
+  {
+    videoOpacity: 1,
+    overlayOpacity: 0,
+  },
+)
 </script>
 
 <template>
-  <div class="fixed inset-0 w-full h-full z-0">
+  <div class="absolute inset-0 z-0 overflow-hidden">
     <video
-      class="absolute top-0 left-0 w-full h-full object-cover"
+      class="absolute inset-0 w-full h-full object-cover"
+      :style="{ opacity: props.videoOpacity, zIndex: 0 }"
       autoplay
       muted
       loop
@@ -14,6 +26,5 @@ import fondoVideo from '@/assets/fondo.webm'
     >
       <source :src="fondoVideo" type="video/webm" />
     </video>
-    <div class="absolute inset-0 bg-gradient-to-b from-black/40 via-black/60 to-black/90" />
   </div>
 </template>

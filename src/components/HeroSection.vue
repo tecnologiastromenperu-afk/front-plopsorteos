@@ -3,9 +3,9 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
 </script>
 
 <template>
-  <header class="relative w-full h-screen flex items-center justify-center z-10">
+  <header class="relative w-full h-full flex items-center justify-center z-10">
     <div class="container mx-auto px-8 md:px-24 lg:px-32">
-      <div class="max-w-6xl text-center">
+      <div class="max-w-6xl mx-auto text-center">
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight uppercase opacity-90">
           <span
             class="block text-white drop-shadow-2xl"

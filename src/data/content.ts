@@ -1,3 +1,9 @@
+import premioBalon from '@/assets/PREMIO BALON.png';
+import premioTv50 from '@/assets/PREMIO TV 50P.png';
+import premioEquipoSonido from '@/assets/PREMIO EQUIPO DE SONIDO.png';
+import premioPackLineaVet from '@/assets/PREMIO PACK LINEA VET.png';
+import premioSuperPack from '@/assets/PREMIO SUPER PACK.png';
+
 export type Prize = {
   name: string;
   description: string;
@@ -14,24 +20,11 @@ export type Winner = {
 };
 
 export const prizes: Prize[] = [
-  { name: 'Smart TV 65"', description: '4K Ultra HD', image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400' },
-  { name: 'Smart TV 55"', description: 'OLED 4K', image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400' },
-  { name: 'Laptop Gaming', description: 'RTX 4060 16GB RAM', image: 'https://images.unsplash.com/photo-1603302576837-37561b2e2302?w=400' },
-  { name: 'Laptop Pro', description: 'Intel i7 32GB RAM', image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400' },
-  { name: 'iPhone 15 Pro Max', description: '256GB', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400' },
-  { name: 'Samsung Galaxy S24', description: '128GB 5G', image: 'https://images.unsplash.com/photo-1610945415295-d9bbf067e59c?w=400' },
-  { name: 'iPad Pro 12.9"', description: '256GB WiFi', image: 'https://images.unsplash.com/photo-1544244015-0df4b3ffc6b0?w=400' },
-  { name: 'PlayStation 5', description: 'Consola + 2 juegos', image: 'https://images.unsplash.com/photo-1606813907291-d86efa9b94db?w=400' },
-  { name: 'Xbox Series X', description: '1TB + Game Pass', image: 'https://images.unsplash.com/photo-1621259182978-fbf93132d53d?w=400' },
-  { name: 'Nintendo Switch', description: 'OLED Edition', image: 'https://images.unsplash.com/photo-1578303512597-81e6cc155b3e?w=400' },
-  { name: 'Smart TV 75"', description: '8K QLED', image: 'https://images.unsplash.com/photo-1593359677879-a4bb92f829d1?w=400' },
-  { name: 'Laptop Creator', description: 'i9 32GB RTX 4070', image: 'https://images.unsplash.com/photo-1496181133206-80ce9b88a853?w=400' },
-  { name: 'Google Pixel 8 Pro', description: '256GB', image: 'https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400' },
-  { name: 'OnePlus 12', description: '512GB 5G', image: 'https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?w=400' },
-  { name: 'Sony WH-1000XM5', description: 'Headphones Premium', image: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400' },
-  { name: 'Apple Watch SE', description: 'GPS 44mm', image: 'https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400' },
-  { name: 'Canon EOS R6', description: 'Mirrorless 24MP', image: 'https://images.unsplash.com/photo-1526170375885-4d8ecf77b99f?w=400' },
-  { name: 'Monitor Gaming 27"', description: '240Hz QHD', image: 'https://images.unsplash.com/photo-1527443224154-c4a3942d3acf?w=400' },
+  { name: 'Trionda', description: 'Balón de Fútbol FIFA', image: premioBalon },
+  { name: 'Smart TV 50"', description: 'OLED 4K', image: premioTv50 },
+  { name: 'Equipo de Sonido', description: 'SOUND MAX', image: premioEquipoSonido },
+  { name: 'Laptop Pro', description: 'Intel i7 32GB RAM', image: premioPackLineaVet },
+  { name: 'Pack de productos MAXFL', description: 'MAXFL PACK', image: premioSuperPack },
 ];
 
 export const selfiePrizes: Prize[] = [

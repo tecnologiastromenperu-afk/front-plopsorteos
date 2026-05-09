@@ -47,14 +47,16 @@ const resetForm = () => {
   <Teleport to="body">
     <div
       v-if="modelValue"
-      class="fixed inset-0 bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 z-50"
+      class="fixed inset-0 z-50 overflow-y-auto bg-black/60 p-3 backdrop-blur-sm sm:flex sm:items-center sm:justify-center sm:p-4"
     >
-      <div class="bg-white rounded-2xl shadow-2xl p-8 max-w-lg w-full max-h-[90vh] overflow-y-auto">
+      <div
+        class="mx-auto my-3 w-full max-w-lg rounded-2xl bg-white p-5 shadow-2xl max-sm:min-h-[calc(100dvh-1.5rem)] max-sm:rounded-3xl sm:my-6 sm:max-h-[calc(100dvh-2rem)] sm:p-8 overflow-y-auto"
+      >
 
         <!-- Header del modal -->
         <div v-if="!result" class="text-center mb-6">
           <div
-            class="w-16 h-16 bg-gradient-to-br from-[#004f9f] to-[#5C068C] rounded-full flex items-center justify-center mx-auto mb-4"
+            class="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-linear-to-br from-[#004f9f] to-[#5C068C]"
           >
             <Gift class="w-8 h-8 text-white" />
           </div>
@@ -141,7 +143,7 @@ const resetForm = () => {
             </span>
           </label>
 
-          <div class="flex gap-3 pt-4 border-t border-gray-200">
+          <div class="flex flex-col gap-3 border-t border-gray-200 pt-4 sm:flex-row">
             <button
               type="button"
               @click="resetForm"
@@ -151,7 +153,7 @@ const resetForm = () => {
             </button>
             <button
               type="submit"
-              class="flex-1 px-6 py-3 bg-gradient-to-r from-[#004f9f] to-[#5C068C] text-white font-semibold rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all"
+              class="flex-1 rounded-lg bg-linear-to-r from-[#004f9f] to-[#5C068C] px-6 py-3 font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg"
             >
               Validar codigo
             </button>
@@ -170,7 +172,7 @@ const resetForm = () => {
             </h3>
             <p class="text-lg text-gray-700 mb-4">¡Tu codigo es ganador!</p>
             <div
-              class="bg-gradient-to-br from-[#004f9f]/10 to-[#5C068C]/10 border-2 border-[#004f9f]/30 rounded-xl p-6 mb-4"
+              class="mb-4 rounded-xl border-2 border-[#004f9f]/30 bg-linear-to-br from-[#004f9f]/10 to-[#5C068C]/10 p-6"
             >
               <p class="text-sm text-gray-600 mb-2 uppercase tracking-wide">Tu premio</p>
               <p class="text-xl font-bold text-gray-900">{{ result.prize }}</p>
@@ -191,7 +193,7 @@ const resetForm = () => {
             </div>
             <h3 class="text-2xl font-bold text-gray-900 mb-3">¡Gracias por participar!</h3>
             <p class="text-lg text-gray-700 mb-6">Tu codigo no resulto ganador en esta ocasion.</p>
-            <div class="bg-gradient-to-br from-amber-50 to-orange-50 border-2 border-amber-200 rounded-xl p-6 mb-6">
+            <div class="mb-6 rounded-xl border-2 border-amber-200 bg-linear-to-br from-amber-50 to-orange-50 p-6">
               <p class="text-base font-semibold text-gray-900 mb-2">✨ ¡Pero aún puedes ganar!</p>
               <p class="text-sm text-gray-700">
                 Postea una selfie con tu producto, etiquetanos en redes sociales y entras al sorteo adicional.
@@ -201,7 +203,7 @@ const resetForm = () => {
 
           <button
             @click="resetForm"
-            class="px-8 py-3 bg-gradient-to-r from-[#004f9f] to-[#5C068C] text-white font-semibold rounded-lg hover:shadow-lg hover:scale-[1.02] transition-all w-full"
+            class="w-full rounded-lg bg-linear-to-r from-[#004f9f] to-[#5C068C] px-8 py-3 font-semibold text-white transition-all hover:scale-[1.02] hover:shadow-lg"
           >
             Cerrar
           </button>
