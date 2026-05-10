@@ -1,6 +1,6 @@
 import { reactive, onMounted, onUnmounted } from 'vue'
 
-export function useCountdown(targetDateStr = '2026-12-31T23:59:59') {
+export function useCountdown(targetDateStr = '2026-06-26T11:59:00') {
   const timeLeft = reactive({ days: 0, hours: 0, minutes: 0, seconds: 0 })
   let timer: ReturnType<typeof setInterval> | undefined
 

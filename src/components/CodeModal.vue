@@ -26,7 +26,10 @@ type ValidationResponse = {
 }
 
 defineProps<{ modelValue: boolean }>()
-const emit = defineEmits<{ (e: 'update:modelValue', val: boolean): void }>()
+const emit = defineEmits<{
+  (e: 'update:modelValue', val: boolean): void
+  (e: 'open-general-terms'): void
+}>()
 
 const formData = reactive({
   code: '',
@@ -253,7 +256,13 @@ const resetForm = () => {
             />
             <span class="text-sm text-gray-700 cursor-pointer">
               Acepto los
-              <a href="#" class="text-[#004f9f] font-semibold hover:underline">terminos y condiciones</a>
+              <button
+                type="button"
+                class="text-[#004f9f] font-semibold hover:underline"
+                @click.prevent="emit('open-general-terms')"
+              >
+                terminos y condiciones
+              </button>
               y la politica de privacidad
             </span>
           </label>

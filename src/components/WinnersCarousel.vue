@@ -1,16 +1,90 @@
 <script setup lang="ts">
-import { onUnmounted, watch } from 'vue';
+import { onUnmounted, watch, onMounted, ref } from 'vue';
 import emblaCarouselVue from 'embla-carousel-vue';
 import { ArrowRight, ChevronLeft, ChevronRight, Trophy, UserRound } from 'lucide-vue-next';
-import type { Winner } from '@/data/content';
+import { prizes as catalogPrizes } from '@/data/content';
 
-defineProps<{
-  winners: Winner[];
-}>();
+type Winner = {
+  name: string
+  prize: string
+  prizeImage: string
+  state: string
+  dni: string
+}
+
+type WinnerApiRecord = Record<string, unknown>
+type WinnersApiResponse = WinnerApiRecord[] | { winners?: WinnerApiRecord[]; data?: WinnerApiRecord[] }
+
+const WINNERS_API_URL = import.meta.env.VITE_WINNERS_API_URL as string | undefined
 
 const emit = defineEmits<{
   (e: 'show-more'): void;
 }>();
+
+const winners = ref<Winner[]>([])
+
+const toText = (value: unknown, fallback = 'N/A') => {
+  if (typeof value === 'string' && value.trim()) {
+    return value.trim()
+  }
+  return fallback
+}
+
+const findPrizeImage = (prizeType: unknown): string => {
+  if (typeof prizeType !== 'string' || !prizeType.trim()) return ''
+  const match = catalogPrizes.find(
+    (p) => p.id.toUpperCase().trim() === (prizeType as string).toUpperCase().trim()
+  )
+  return match?.image ?? ''
+}
+
+const normalizeWinner = (winner: WinnerApiRecord): Winner => {
+  const prizeObj = winner.prize as Record<string, unknown> | undefined
+  const prizeType = prizeObj?.type ?? winner.prizeType ?? winner.prize_type
+  const prizeDescription = prizeObj?.description ?? winner.prizeDescription ?? winner.prize_description
+
+  return {
+    name: toText(winner.name ?? winner.fullName ?? winner.nombre),
+    prize: toText(prizeType),
+    prizeImage: findPrizeImage(prizeType),
+    state: toText(prizeDescription),
+    dni: '***' + toText(winner.dni ?? winner.documentId ?? winner.documento),
+  }
+}
+
+const extractWinners = (payload: WinnersApiResponse): WinnerApiRecord[] => {
+  if (Array.isArray(payload)) {
+    return payload
+  }
+  if (Array.isArray(payload.winners)) {
+    return payload.winners
+  }
+  if (Array.isArray(payload.data)) {
+    return payload.data
+  }
+  return []
+}
+
+const fetchWinners = async () => {
+  try {
+    if (!WINNERS_API_URL) {
+      winners.value = []
+      return
+    }
+    const response = await fetch(WINNERS_API_URL)
+    if (!response.ok) {
+      throw new Error(`Error del servidor (${response.status})`)
+    }
+    const payload = await response.json() as WinnersApiResponse
+    winners.value = extractWinners(payload).map(normalizeWinner)
+  } catch {
+    winners.value = []
+  }
+}
+
+onMounted(() => {
+  void fetchWinners()
+})
 
 const [emblaRef, emblaApi] = emblaCarouselVue({
   loop: true,
@@ -37,12 +111,10 @@ onUnmounted(() => {
 
 const scrollPrev = () => emblaApi.value?.scrollPrev();
 const scrollNext = () => emblaApi.value?.scrollNext();
-
-const winnerBadge = (winner: Winner) => winner.state;
 </script>
 
 <template>
-  <section class="mt-8 md:mt-10 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
+  <section v-if="winners.length > 0" class="mt-8 md:mt-10 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
     <div class="flex justify-between items-center px-4 md:px-6 py-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15">
@@ -86,8 +158,8 @@ const winnerBadge = (winner: Winner) => winner.state;
                 </div>
 
                 <div class="shrink-0 rounded-xl bg-white/10 border border-white/15 px-3 py-2 text-right">
-                  <p class="text-[11px] text-white/70 uppercase tracking-wide">Ganó en</p>
-                  <p class="text-white font-extrabold text-sm md:text-base">{{ winnerBadge(winner) }}</p>
+                  <p class="text-[11px] text-white/70 uppercase tracking-wide">DNI</p>
+                  <p class="text-white font-extrabold text-sm md:text-base">{{ winner.dni }}</p>
                 </div>
               </div>
             </div>

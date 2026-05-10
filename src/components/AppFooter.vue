@@ -1,6 +1,11 @@
 <script setup lang="ts">
 import { Facebook, Instagram, Mail, Phone } from 'lucide-vue-next'
 import logo from '@/assets/logo.png'
+
+const emit = defineEmits<{
+  (e: 'open-general-terms'): void
+  (e: 'open-second-chance-terms'): void
+}>()
 </script>
 
 <template>
@@ -16,14 +21,14 @@ import logo from '@/assets/logo.png'
               href="mailto:fumiplop@plopperu.pe"
               class="flex items-center gap-2 text-gray-300 text-sm hover:text-white transition-colors"
             >
-              <Mail class="w-4 h-4 flex-shrink-0" />
+              <Mail class="w-4 h-4 shrink-0" />
               <span>fumiplop@plopperu.pe</span>
             </a>
             <a
               href="tel:902725464"
               class="flex items-center gap-2 text-gray-300 text-sm hover:text-white transition-colors"
             >
-              <Phone class="w-4 h-4 flex-shrink-0" />
+              <Phone class="w-4 h-4 shrink-0" />
               <span>902 725 464</span>
             </a>
           </div>
@@ -33,15 +38,23 @@ import logo from '@/assets/logo.png'
         <div>
           <h3 class="text-white font-bold text-sm uppercase tracking-wider mb-4">INFORMACION LEGAL</h3>
           <div class="space-y-3">
-            <a href="#" class="block text-gray-300 text-sm hover:text-white transition-colors">
+            <button
+              type="button"
+              class="block text-left text-gray-300 text-sm hover:text-white transition-colors"
+              @click="emit('open-general-terms')"
+            >
               Terminos y condiciones
-            </a>
-            <a href="#" class="block text-gray-300 text-sm hover:text-white transition-colors">
+            </button>
+            <span class="block text-gray-300/70 text-sm">
               Politica de privacidad
-            </a>
-            <a href="#" class="block text-gray-300 text-sm hover:text-white transition-colors">
-              Reglamento
-            </a>
+            </span>
+            <button
+              type="button"
+              class="block text-left text-gray-300 text-sm hover:text-white transition-colors"
+              @click="emit('open-second-chance-terms')"
+            >
+              Terminos segunda chance
+            </button>
           </div>
         </div>
 

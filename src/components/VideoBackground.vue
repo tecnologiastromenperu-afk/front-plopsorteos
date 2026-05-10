@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import fondoVideo from '@/assets/fondo.mp4'
+import fondoVideo from '@/assets/fondoplop.mp4'
 
 const props = withDefaults(
   defineProps<{
@@ -22,7 +22,7 @@ const props = withDefaults(
       muted
       loop
       playsinline
-      poster="@/assets/fondo.png"
+      poster="@/assets/fondoplop.png"
     >
       <source :src="fondoVideo" type="video/webm" />
     </video>

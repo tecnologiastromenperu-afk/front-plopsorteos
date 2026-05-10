@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onUnmounted, ref, watch } from 'vue';
 import emblaCarouselVue from 'embla-carousel-vue';
-import { ChevronLeft, ChevronRight, Image as ImageIcon } from 'lucide-vue-next';
+import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
 
 import banner1 from '@/assets/banner1.png';
 import banner2 from '@/assets/banner2.png';
@@ -81,18 +81,9 @@ const scrollTo = (index: number) => emblaApi.value?.scrollTo(index);
 </script>
 
 <template>
-  <section class="mt-8 md:mt-10 w-full rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
+  <section class="w-full rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
     <div class="flex justify-between items-center px-4 md:px-6 py-4">
-      <div class="flex items-center gap-3">
-        <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15">
-          <ImageIcon class="w-5 h-5 text-white/90" />
-        </div>
-        <div>
-          <h2 class="font-bold text-white text-[20px] leading-none">Banners</h2>
-          <p class="text-white/70 text-sm">Información destacada</p>
-        </div>
-      </div>
-      <span class="text-xs md:text-sm text-white/60 uppercase tracking-wide">Destacados</span>
+      
     </div>
 
     <div class="relative group px-3 md:px-6 pb-4 md:pb-6">

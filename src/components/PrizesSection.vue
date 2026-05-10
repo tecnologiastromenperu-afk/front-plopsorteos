@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref, computed } from 'vue'
-import { prizes, selfiePrizes, type Prize } from '@/data/content'
+import { prizes, type Prize } from '@/data/content'
 import type { PrizeFilter } from '@/types'
 
 const prizeFilter = ref<PrizeFilter>('todos')
@@ -9,7 +9,6 @@ const visiblePrizesCount = ref(9)
 const filterOptions: { value: PrizeFilter; label: string }[] = [
   { value: 'todos', label: 'Todos los premios' },
   { value: 'descubiertos', label: 'Premios descubiertos' },
-  { value: 'por-descubrir', label: 'Premios por descubrir' },
 ]
 
 // Los primeros 30 índices son "descubiertos"
@@ -71,7 +70,7 @@ const showMorePrizes = () => {
             v-if="isDiscoveredPrize(prize)"
             class="absolute top-4 right-4 bg-gradient-to-r from-[#004f9f] to-[#5C068C] text-white px-3 py-1 rounded-full text-xs font-bold"
           >
-            DESCUBIERTO
+            PREMIAZO
           </div>
           <div class="w-full h-48 mb-4 overflow-hidden rounded-[12px]">
             <img :src="prize.image" :alt="prize.name" class="w-full h-full object-cover" />
@@ -92,21 +91,4 @@ const showMorePrizes = () => {
     </div>
   </section>
 
-  <!-- Sorteo selfie -->
-  <section class="pb-20">
-    <h2 class="text-2xl font-bold text-white mb-6">Sorteo Postea tu selfie</h2>
-    <div class="grid md:grid-cols-3 gap-6 max-w-5xl mx-auto">
-      <div
-        v-for="(prize, index) in selfiePrizes"
-        :key="index"
-        class="bg-white/20 backdrop-blur-sm rounded-[20px] p-6 text-center"
-      >
-        <div class="w-full h-48 mb-4 overflow-hidden rounded-[12px]">
-          <img :src="prize.image" :alt="prize.name" class="w-full h-full object-cover" />
-        </div>
-        <h3 class="text-2xl font-bold text-white mb-2">{{ prize.name }}</h3>
-        <p class="text-white/90">{{ prize.description }}</p>
-      </div>
-    </div>
-  </section>
 </template>
