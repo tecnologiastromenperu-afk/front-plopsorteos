@@ -9,29 +9,29 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
         <h1 class="text-4xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight uppercase opacity-90">
           <span
             class="block text-white drop-shadow-2xl"
-            style="text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 30px rgba(92, 6, 140, 0.8)"
+            style="text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 0 30px rgba(92, 6, 140, 0.8)"
           >
-            PREMIOS
+            Cada Producto
           </span>
           <span
             class="block text-white drop-shadow-2xl -mt-2"
-            style="text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 30px rgba(0, 79, 159, 0.8)"
+            style="text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 0 30px rgba(0, 79, 159, 0.8)"
           >
-            TODOS LOS
+            Tiene un Guau
           </span>
           <span
             class="block -mt-2"
-            style="color: #00FF41; text-shadow: -3px -3px 0 #000, 3px -3px 0 #000, -3px 3px 0 #000, 3px 3px 0 #000, 0 0 40px rgba(0, 255, 65, 0.9)"
+            style="color: #00FF41; text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 0 40px rgba(0, 255, 65, 0.9)"
           >
-            DIAS 😎
+            Esperándote! 🐾
           </span>
         </h1>
 
         <p
-          class="text-xl md:text-2xl font-black mb-10 uppercase opacity-85"
-          style="color: white; text-shadow: -2px -2px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000"
+          class="text-xl md:text-2xl font-black mb-10 uppercase opacity-90"
+          style="color: white; text-shadow: -1px -1px 0 #000, 2px -2px 0 #000, -2px 2px 0 #000, 2px 2px 0 #000"
         >
-          CON TUS PRODUCTOS FAVORITOS
+         GANA CON TUS PRODUCTOS FAVORITOS
         </p>
 
         <button
