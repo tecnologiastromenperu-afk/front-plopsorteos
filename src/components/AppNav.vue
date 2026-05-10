@@ -17,7 +17,7 @@ const desktopItems: { section: Section; icon: Component; label: string }[] = [
 <template>
   <!-- Logo circular flotante -->
   <div class="fixed left-4 md:left-6 top-4 md:top-8 z-50">
-    <div class="w-50 h-16 md:w-50 md:h-16 rounded-full bg-[#e6edf0] flex items-center justify-center shadow-2xl bg-white/30">
+    <div class="w-50 h-16 md:w-50 md:h-16 rounded-full bg-[#e6edf0] flex items-center justify-center shadow-2xl bg-white/90">
       <img :src="logoCircle" alt="Logo Plopsorteos.com" class="w-40 md:w-40 h-20 md:h-20 object-contain" />
     </div>
   </div>

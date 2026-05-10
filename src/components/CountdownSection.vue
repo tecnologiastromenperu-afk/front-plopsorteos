@@ -35,7 +35,7 @@ const countdownUnits = [
       <div class="bg-[#12151c] border border-white/10 rounded-[20px] p-4 md:p-6">
         <!-- Header con gradiente -->
         <div class="bg-linear-to-r from-[#004f9f] to-[#5C068C] text-white rounded-[12px] -mx-4 md:-mx-6 -mt-4 md:-mt-6 mb-6 px-4 md:px-6 py-3 text-center">
-          <span class="font-bold text-sm md:text-base uppercase tracking-wide">TIENES PARA POSTEAR TU SELFIE Y ETIQUETARNOS HASTA</span>
+          <span class="font-bold text-sm md:text-base uppercase tracking-wide">POSTEA TU SELFIE Y ETIQUÉTANOS HASTA EL</span>
           <div class="mt-2 text-center text-sm font-semibold">26 de junio de 2026, 11:59 PM </div>
         </div>
 
@@ -77,7 +77,7 @@ const countdownUnits = [
         <div class="mt-3 text-center">
           <button
             type="button"
-            class="text-sm font-semibold text-pink-200 transition hover:text-white hover:underline"
+            class="text-sm font-semibold text-blue-500 transition hover:text-white hover:underline"
             @click="emit('open-second-chance-terms')"
           >
             Ver términos de la segunda chance
