@@ -38,8 +38,6 @@ onUnmounted(() => {
 const scrollPrev = () => emblaApi.value?.scrollPrev();
 const scrollNext = () => emblaApi.value?.scrollNext();
 
-const promoBadges = ['13%', '22%', '30%', 'S/89', 'S/39'];
-const getPromoBadge = (index: number) => promoBadges[index % promoBadges.length];
 </script>
 
 <template>
