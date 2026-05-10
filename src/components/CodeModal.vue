@@ -213,7 +213,10 @@ const resetForm = () => {
       class="fixed inset-0 z-50 overflow-y-auto bg-black/60 p-3 backdrop-blur-sm sm:flex sm:items-center sm:justify-center sm:p-4"
     >
       <div
-        class="mx-auto my-3 w-full max-w-lg rounded-2xl bg-white p-5 shadow-2xl max-sm:min-h-[calc(100dvh-1.5rem)] max-sm:rounded-3xl sm:my-6 sm:max-h-[calc(100dvh-2rem)] sm:p-8 overflow-y-auto"
+        :class="[
+          'mx-auto my-3 w-full rounded-2xl bg-white p-5 shadow-2xl max-sm:min-h-[calc(100dvh-1.5rem)] max-sm:rounded-3xl sm:my-6 sm:max-h-[calc(100dvh-2rem)] sm:p-8 overflow-y-auto',
+          result ? 'max-w-6xl' : 'max-w-lg',
+        ]"
       >
 
         <!-- Header del modal -->
