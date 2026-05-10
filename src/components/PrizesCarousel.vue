@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { onUnmounted, watch } from 'vue';
 import emblaCarouselVue from 'embla-carousel-vue';
-import { ArrowRight, ChevronLeft, ChevronRight, Gift, Link2 } from 'lucide-vue-next';
+import { ArrowRight, ChevronLeft, ChevronRight, Gift } from 'lucide-vue-next';
 import type { Prize } from '@/data/content';
 
 defineProps<{

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import fondoVideo from '@/assets/fondo.webm'
+import fondoVideo from '@/assets/fondo.mp4'
 
 const props = withDefaults(
   defineProps<{
