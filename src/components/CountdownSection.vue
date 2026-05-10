@@ -34,7 +34,7 @@ const countdownUnits = [
     <div class="px-3 md:px-6 pb-4 md:pb-6">
       <div class="bg-[#12151c] border border-white/10 rounded-[20px] p-4 md:p-6">
         <!-- Header con gradiente -->
-        <div class="bg-linear-to-r from-purple-600 to-pink-600 text-white rounded-[12px] -mx-4 md:-mx-6 -mt-4 md:-mt-6 mb-6 px-4 md:px-6 py-3 text-center">
+        <div class="bg-linear-to-r from-[#004f9f] to-[#5C068C] text-white rounded-[12px] -mx-4 md:-mx-6 -mt-4 md:-mt-6 mb-6 px-4 md:px-6 py-3 text-center">
           <span class="font-bold text-sm md:text-base uppercase tracking-wide">TIENES PARA POSTEAR TU SELFIE Y ETIQUETARNOS HASTA</span>
           <div class="mt-2 text-center text-sm font-semibold">26 de junio de 2026, 11:59 PM </div>
         </div>
@@ -60,7 +60,7 @@ const countdownUnits = [
           <ol class="space-y-2 md:space-y-3 text-white/85 text-sm md:text-base">
             <li v-for="(step, i) in steps" :key="i" class="flex items-start gap-3">
               <span
-                class="shrink-0 w-5 h-5 md:w-6 md:h-6 bg-purple-500 rounded-full flex items-center justify-center text-xs md:text-sm font-bold text-white"
+                class="shrink-0 w-5 h-5 md:w-6 md:h-6 bg-blue-500 rounded-full flex items-center justify-center text-xs md:text-sm font-bold text-white"
               >
                 {{ i + 1 }}
               </span>
