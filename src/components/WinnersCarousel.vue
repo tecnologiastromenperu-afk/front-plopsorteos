@@ -91,22 +91,42 @@ const [emblaRef, emblaApi] = emblaCarouselVue({
   align: 'center',
   slidesToScroll: 1,
   containScroll: 'trimSnaps',
+  watchDrag: true,
 });
 void emblaRef;
 
 let autoplayTimer: ReturnType<typeof setInterval> | undefined;
 
-watch(emblaApi, (api) => {
+const stopAutoplay = () => {
   if (autoplayTimer) {
     clearInterval(autoplayTimer);
     autoplayTimer = undefined;
   }
+};
+
+const startAutoplay = () => {
+  if (!emblaApi.value) return;
+  stopAutoplay();
+  autoplayTimer = setInterval(() => emblaApi.value?.scrollNext(), 3000);
+};
+
+watch(emblaApi, (api) => {
+  stopAutoplay();
   if (!api) return;
-  autoplayTimer = setInterval(() => api.scrollNext(), 3000);
+  startAutoplay();
 });
 
+watch(
+  () => winners.value.length,
+  () => {
+    // Winners are loaded async, so force Embla to recompute slide snaps when data changes.
+    emblaApi.value?.reInit();
+    startAutoplay();
+  }
+);
+
 onUnmounted(() => {
-  if (autoplayTimer) clearInterval(autoplayTimer);
+  stopAutoplay();
 });
 
 const scrollPrev = () => emblaApi.value?.scrollPrev();
@@ -114,7 +134,7 @@ const scrollNext = () => emblaApi.value?.scrollNext();
 </script>
 
 <template>
-  <section v-if="winners.length > 0" class="mt-8 md:mt-10 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
+  <section v-show="winners.length > 0" class="mt-8 md:mt-10 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
     <div class="flex justify-between items-center px-4 md:px-6 py-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15">
@@ -135,7 +155,14 @@ const scrollNext = () => emblaApi.value?.scrollNext();
     </div>
 
     <div class="relative group px-3 md:px-6 pb-4 md:pb-6">
-      <div class="overflow-hidden" ref="emblaRef">
+      <div
+        class="overflow-hidden touch-pan-y"
+        ref="emblaRef"
+        @mouseenter="stopAutoplay"
+        @mouseleave="startAutoplay"
+        @touchstart.passive="stopAutoplay"
+        @touchend="startAutoplay"
+      >
         <div class="flex gap-4 md:gap-6">
           <div
             v-for="(winner, index) in winners"
@@ -144,7 +171,7 @@ const scrollNext = () => emblaApi.value?.scrollNext();
           >
             <div class="bg-[#12151c] border border-white/10 rounded-[20px] p-3 md:p-4 h-full shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
               <div class="w-full h-44 md:h-48 mb-3 flex items-center justify-center overflow-hidden rounded-[16px] bg-white/5">
-                <img :src="winner.prizeImage" :alt="winner.prize" class="w-full h-full object-cover" />
+                <img :src="winner.prizeImage" :alt="winner.prize" class="w-full h-full object-cover pointer-events-none select-none" draggable="false" />
               </div>
 
               <div class="flex items-center gap-3">
@@ -169,14 +196,14 @@ const scrollNext = () => emblaApi.value?.scrollNext();
 
       <button
         @click="scrollPrev"
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Anterior"
       >
         <ChevronLeft class="w-6 h-6" />
       </button>
       <button
         @click="scrollNext"
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Siguiente"
       >
         <ChevronRight class="w-6 h-6" />

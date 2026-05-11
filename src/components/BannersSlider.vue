@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { computed, onUnmounted, ref, watch } from 'vue';
+import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import emblaCarouselVue from 'embla-carousel-vue';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
 
-import banner1 from '@/assets/banner1.png';
+import banner1 from '@/assets/Banner1.png';
 import banner2 from '@/assets/banner2.png';
 import banner3 from '@/assets/banner3.png';
 
@@ -23,6 +23,7 @@ const [emblaRef, emblaApi] = emblaCarouselVue({
   align: 'center',
   slidesToScroll: 1,
   containScroll: 'trimSnaps',
+  watchDrag: true,
 });
 void emblaRef;
 
@@ -36,6 +37,8 @@ const updateSelectedIndex = () => {
 };
 
 const startAutoplay = () => {
+  if (!emblaApi.value) return;
+
   if (autoplayTimer) {
     clearInterval(autoplayTimer);
   }
@@ -45,16 +48,20 @@ const startAutoplay = () => {
   }, 5000);
 };
 
+const stopAutoplay = () => {
+  if (autoplayTimer) {
+    clearInterval(autoplayTimer);
+    autoplayTimer = undefined;
+  }
+};
+
 watch(emblaApi, (api, oldApi) => {
   if (oldApi) {
     oldApi.off('select', updateSelectedIndex);
     oldApi.off('reInit', updateSelectedIndex);
   }
 
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer);
-    autoplayTimer = undefined;
-  }
+  stopAutoplay();
 
   if (!api) return;
 
@@ -70,9 +77,12 @@ onUnmounted(() => {
     emblaApi.value.off('reInit', updateSelectedIndex);
   }
 
-  if (autoplayTimer) {
-    clearInterval(autoplayTimer);
-  }
+  stopAutoplay();
+});
+
+onMounted(() => {
+  // Ensure Embla recalculates dimensions after initial layout/render.
+  requestAnimationFrame(() => emblaApi.value?.reInit());
 });
 
 const scrollPrev = () => emblaApi.value?.scrollPrev();
@@ -87,7 +97,15 @@ const scrollTo = (index: number) => emblaApi.value?.scrollTo(index);
     </div>
 
     <div class="relative group px-3 md:px-6 pb-4 md:pb-6">
-      <div class="overflow-hidden" ref="emblaRef">
+      <div
+        class="overflow-hidden"
+        style="touch-action: pan-y"
+        ref="emblaRef"
+        @mouseenter="stopAutoplay"
+        @mouseleave="startAutoplay"
+        @touchstart.passive="stopAutoplay"
+        @touchend="startAutoplay"
+      >
         <div class="flex">
           <div
             v-for="(banner, index) in banners"
@@ -99,7 +117,8 @@ const scrollTo = (index: number) => emblaApi.value?.scrollTo(index);
               <img
                 :src="banner.src"
                 :alt="banner.alt"
-                class="w-full h-full object-contain"
+                class="w-full h-full object-contain pointer-events-none select-none"
+                draggable="false"
               />
               </div>
             </div>
@@ -109,14 +128,14 @@ const scrollTo = (index: number) => emblaApi.value?.scrollTo(index);
 
       <button
         @click="scrollPrev"
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Banner anterior"
       >
         <ChevronLeft class="w-6 h-6" />
       </button>
       <button
         @click="scrollNext"
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Banner siguiente"
       >
         <ChevronRight class="w-6 h-6" />

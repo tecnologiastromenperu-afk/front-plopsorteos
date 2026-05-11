@@ -17,6 +17,7 @@ const [emblaRef, emblaApi] = emblaCarouselVue({
   align: 'center',
   slidesToScroll: 1,
   containScroll: 'trimSnaps',
+  watchDrag: true,
 });
 void emblaRef;
 
@@ -62,7 +63,7 @@ const scrollNext = () => emblaApi.value?.scrollNext();
     </div>
 
     <div class="relative group px-3 md:px-6 pb-4 md:pb-6">
-      <div class="overflow-hidden" ref="emblaRef">
+      <div class="overflow-hidden touch-pan-y" ref="emblaRef">
         <div class="flex gap-4 md:gap-6">
           <div
             v-for="(prize, index) in prizes"
@@ -71,7 +72,7 @@ const scrollNext = () => emblaApi.value?.scrollNext();
           >
             <div class="bg-[#12151c] border border-white/10 rounded-[20px] p-3 md:p-4 h-full shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
               <div class="w-full h-44 md:h-48 mb-3 flex items-center justify-center overflow-hidden rounded-[16px] bg-white">
-                <img :src="prize.image" :alt="prize.name" class="w-full h-full object-cover" />
+                <img :src="prize.image" :alt="prize.name" class="w-full h-full object-cover pointer-events-none select-none" draggable="false" />
               </div>
 
               <div class="flex items-center gap-3">
@@ -90,14 +91,14 @@ const scrollNext = () => emblaApi.value?.scrollNext();
 
       <button
         @click="scrollPrev"
-        class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Anterior"
       >
         <ChevronLeft class="w-6 h-6" />
       </button>
       <button
         @click="scrollNext"
-        class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
+        class="hidden md:flex absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/70 text-white p-3 rounded-full backdrop-blur-sm opacity-0 group-hover:opacity-100 transition-opacity"
         aria-label="Siguiente"
       >
         <ChevronRight class="w-6 h-6" />

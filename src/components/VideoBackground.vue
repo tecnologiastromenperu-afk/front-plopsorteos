@@ -1,5 +1,7 @@
 <script setup lang="ts">
-import fondoVideo from '@/assets/fondoplop.mp4'
+import { onMounted } from 'vue'
+import fondoVideo from '@/assets/ANIMACION.webm'
+import fondoPoster from '@/assets/fondoplop.png'
 
 const props = withDefaults(
   defineProps<{
@@ -11,6 +13,16 @@ const props = withDefaults(
     overlayOpacity: 0,
   },
 )
+
+onMounted(() => {
+  const videoElement = document.querySelector('video')
+  if (videoElement) {
+    videoElement.addEventListener('error', () => {
+      console.warn('Video loading error, retrying...')
+      videoElement.load()
+    })
+  }
+})
 </script>
 
 <template>
@@ -18,11 +30,13 @@ const props = withDefaults(
     <video
       class="absolute inset-0 w-full h-full object-cover"
       :style="{ opacity: props.videoOpacity, zIndex: 0 }"
+      :poster="fondoPoster"
       autoplay
       muted
       loop
       playsinline
-      poster="@/assets/fondoplop.png"
+      preload="auto"
+      crossorigin="anonymous"
     >
       <source :src="fondoVideo" type="video/webm" />
     </video>

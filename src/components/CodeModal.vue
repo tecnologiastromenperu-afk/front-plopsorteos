@@ -277,7 +277,7 @@ const resetForm = () => {
             <input
               v-model="formData.phone"
               type="tel"
-              placeholder="+51 999 999 999"
+              placeholder="999 999 999"
               class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004f9f] focus:border-transparent transition-all"
               required
             />
