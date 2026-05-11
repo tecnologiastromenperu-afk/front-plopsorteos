@@ -51,7 +51,7 @@ const activeTermsPdfName = computed(() => (activeTerms.value ? termsPdfNames[act
 
     <!-- BannersSlider positioned at the bottom of the video -->
     <template v-if="activeSection === 'inicio'">
-      <div class="absolute left-0 right-0 top-[90vh] z-150 pointer-events-auto -translate-y-1">
+      <div class="absolute left-0 right-0 top-[90vh] z-30 pointer-events-auto -translate-y-1">
         <div class="container mx-auto px-4">
           <BannersSlider />
         </div>
