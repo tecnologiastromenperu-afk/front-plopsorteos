@@ -5,9 +5,10 @@ const emit = defineEmits<{ (e: 'open-second-chance-terms'): void }>()
 
 const { timeLeft } = useCountdown()
 
+
 const steps = [
   'Síguenos en nuestras redes sociales',
-  'Tómate una selfie con tu producto favorito',
+  'Tómate una selfie con tu producto MAX-FL favorito',
   'Publica la foto en tus redes sociales',
   'Etiquéta a la cuenta oficial de PLOPPERÚ y usa el hashtag #MiProductoFavorito',
   'Entrarás automáticamente al sorteo adicional',
@@ -51,7 +52,8 @@ const countdownUnits = [
 
         <!-- Descripción -->
         <p class="text-sm md:text-base text-white/90 mb-4 text-center">
-          ¡No te preocupes! Aún tienes la oportunidad de ganar premios increíbles.
+          ¡No te preocupes! Aún tienes la oportunidad de ganar premios increíbles. <br />
+          ¡Los sorteos se realizarán todos los sábados desde el 16 de mayo hasta el 26 de junio!
         </p>
 
         <!-- Steps Section -->

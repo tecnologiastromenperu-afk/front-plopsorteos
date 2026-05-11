@@ -101,7 +101,7 @@ const resultDescription = computed(() => {
 
 const resultSupportText = computed(() => {
   if (isWinner.value) {
-    return `Nuestro equipo se pondra en contacto al correo ${formData.email} para coordinar la entrega de tu premio.`
+    return `Nuestro equipo se pondra en contacto al correo ${formData.email} o al WhatsApp ingresado para coordinar la entrega de tu premio.`
   }
 
   if (result.value?.reason === 'invalid_code') {
@@ -110,6 +110,11 @@ const resultSupportText = computed(() => {
 
   return 'Si el problema persiste, vuelve a intentarlo o comunicate con soporte para revisar tu participacion.'
 })
+
+const winnerInstructions = computed(() => [
+  'Para reclamar tu premio deberas contar con el DNI fisico y la cartilla ganadora de raspa y gana.',
+  resultSupportText.value,
+])
 
 const resultPrizeImage = computed(() => {
   const prizeType = result.value?.prize?.type?.trim().toUpperCase()
@@ -395,9 +400,12 @@ const resetForm = () => {
                         <img :src="resultPrizeImage" :alt="result?.prize?.description || result?.prize?.type || 'Premio ganado'" class="mx-auto max-h-44 w-auto object-contain" />
                       </div>
 
-                      <p class="text-base font-bold leading-7 sm:text-lg">
-                        {{ resultSupportText }}
-                      </p>
+                      <ul class="space-y-2 text-left text-base leading-7 sm:text-lg">
+                        <li v-for="(instruction, index) in winnerInstructions" :key="index" class="flex items-start gap-2">
+                          <span />
+                          <span>{{ instruction }}</span>
+                        </li>
+                      </ul>
                     </div>
 
                     <div class="mt-6 flex justify-center gap-5">
@@ -407,7 +415,7 @@ const resetForm = () => {
                       <a href="https://www.facebook.com/share/1Du3Fbx5wF/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
                         <img :src="facebookIcon" alt="Facebook" class="h-12 w-12 object-contain transition-transform hover:scale-110" />
                       </a>
-                      <a href="https://www.tiktok.com/" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
+                      <a href="https://www.tiktok.com/@plop_peru?_r=1&_t=ZS-96FFUBCLuQm" target="_blank" rel="noopener noreferrer" aria-label="TikTok">
                         <img :src="tiktokIcon" alt="TikTok" class="h-12 w-12 object-contain transition-transform hover:scale-110" />
                       </a>
                     </div>

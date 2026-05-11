@@ -6,10 +6,6 @@ import type { PrizeFilter } from '@/types'
 const prizeFilter = ref<PrizeFilter>('todos')
 const visiblePrizesCount = ref(9)
 
-const filterOptions: { value: PrizeFilter; label: string }[] = [
-  { value: 'todos', label: 'Todos los premios' },
-  { value: 'descubiertos', label: 'Premios descubiertos' },
-]
 
 // Los primeros 30 índices son "descubiertos"
 const discoveredIndices = computed(
@@ -42,22 +38,7 @@ const showMorePrizes = () => {
     <div class="max-w-5xl mx-auto">
       <h2 class="text-2xl font-bold text-white mb-6">Premios Disponibles</h2>
 
-      <!-- Filtros -->
-      <div class="flex flex-wrap gap-3 mb-8">
-        <button
-          v-for="opt in filterOptions"
-          :key="opt.value"
-          @click="prizeFilter = opt.value"
-          :class="[
-            'px-6 py-3 rounded-full font-semibold transition-all',
-            prizeFilter === opt.value
-              ? 'bg-white text-purple-600'
-              : 'bg-white/20 text-white hover:bg-white/30',
-          ]"
-        >
-          {{ opt.label }}
-        </button>
-      </div>
+  
 
       <!-- Grid de premios -->
       <div class="grid md:grid-cols-3 gap-6">

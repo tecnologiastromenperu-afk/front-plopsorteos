@@ -51,7 +51,7 @@ const activeTermsPdfName = computed(() => (activeTerms.value ? termsPdfNames[act
 
     <!-- BannersSlider positioned at the bottom of the video -->
     <template v-if="activeSection === 'inicio'">
-      <div class="absolute left-0 right-0 top-[90vh] z-15 pointer-events-auto -translate-y-1">
+      <div class="absolute left-0 right-0 top-[90vh] z-150 pointer-events-auto -translate-y-1">
         <div class="container mx-auto px-4">
           <BannersSlider />
         </div>
@@ -72,9 +72,12 @@ const activeTermsPdfName = computed(() => (activeTerms.value ? termsPdfNames[act
         <CountdownSection @open-second-chance-terms="openTerms('second-chance')" />
       </template>
 
-      <PrizesSection v-else-if="activeSection === 'premios'" />
+      <template v-else-if="activeSection === 'premios'">
+        <BannersSlider class="mt-[71px] mb-[-50px]" />
+        <PrizesSection />
+      </template>
       <template v-else-if="activeSection === 'ganadores'">
-        <BannersSlider class="mb-1 md:mb-8" />
+        <BannersSlider class="mt-[71px] mb-[-50px]" />
         <WinnersSection />
       </template>
     </main>   

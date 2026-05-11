@@ -3,19 +3,23 @@ import { computed, onMounted, onUnmounted, ref, watch } from 'vue';
 import emblaCarouselVue from 'embla-carousel-vue';
 import { ChevronLeft, ChevronRight } from 'lucide-vue-next';
 
-import banner1 from '@/assets/Banner1.png';
+import banner1 from '@/assets/banner1.png';
 import banner2 from '@/assets/banner2.png';
 import banner3 from '@/assets/banner3.png';
+import banner10 from '@/assets/banner10.png';
+import banner20 from '@/assets/banner20.png';
+import banner30 from '@/assets/banner30.png';
 
 type BannerSlide = {
-  src: string;
+  mobileSrc: string;
+  desktopSrc: string;
   alt: string;
 };
 
 const banners: BannerSlide[] = [
-  { src: banner1, alt: 'Banner informativo 1' },
-  { src: banner2, alt: 'Banner informativo 2' },
-  { src: banner3, alt: 'Banner informativo 3' },
+  { mobileSrc: banner1, desktopSrc: banner10, alt: 'Banner informativo 1' },
+  { mobileSrc: banner2, desktopSrc: banner20, alt: 'Banner informativo 2' },
+  { mobileSrc: banner3, desktopSrc: banner30, alt: 'Banner informativo 3' },
 ];
 
 const [emblaRef, emblaApi] = emblaCarouselVue({
@@ -114,12 +118,15 @@ const scrollTo = (index: number) => emblaApi.value?.scrollTo(index);
           >
             <div class="bg-[#12151c] border border-white/10 rounded-[20px] p-2 md:p-3 shadow-[0_8px_30px_rgba(0,0,0,0.35)]">
               <div class="w-full aspect-[1280/620] sm:aspect-[1280/500] md:aspect-[1280/320] bg-black/25 rounded-[16px] overflow-hidden">
-              <img
-                :src="banner.src"
-                :alt="banner.alt"
-                class="w-full h-full object-contain pointer-events-none select-none"
-                draggable="false"
-              />
+              <picture class="block w-full h-full">
+                <source :srcset="banner.desktopSrc" media="(min-width: 768px)" />
+                <img
+                  :src="banner.mobileSrc"
+                  :alt="banner.alt"
+                  class="w-full h-full object-cover md:object-contain pointer-events-none select-none"
+                  draggable="false"
+                />
+              </picture>
               </div>
             </div>
           </div>
