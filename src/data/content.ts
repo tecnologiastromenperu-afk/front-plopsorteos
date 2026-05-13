@@ -21,11 +21,11 @@ export type Winner = {
 };
 
 export const prizes: Prize[] = [
-  { id: "Pelota oficial del mundial", name: 'Trionda Fifa 26', description: 'Pelota Oficial Trionda League Adidas Copa Mundial Fifa 26 En Caja', image: premioBalon },
+  { id: "Pelota Oficial del Mundial 2026", name: 'Trionda Fifa 26', description: 'Pelota Oficial Trionda League Adidas Copa Mundial Fifa 26 En Caja', image: premioBalon },
   { id: "TELEVISOR QLED UHD HISENSE 50P", name: 'Smart TV 50"', description: 'TELEVISOR QLED UHD HISENSE 50P', image: premioTv50 },
-  { id: "Minicomponente Panasonic SC-AKX110PSK 300W", name: 'Equipo de Sonido Panasonic', description: 'Minicomponente Panasonic SC-AKX110PSK 300W', image: premioEquipoSonido },
-  { id: "SUPERPACK", name: 'SUPER PACK MAXFL ', description: 'SUPER PACK DE  LINEA VETERINARIA PARA MASCOTAS', image: premioPackLineaVet },
-  { id: "PACK LINEA VET ", name: 'PACK MAXFL', description: 'PACK DE LINEA VETERINARIA PARA MASCOTAS', image: premioSuperPack },
+  { id: "Minicomponente Panasonic SC-AKX110PSK 300W", name: 'Equipo de Sonido Panasonic', description: 'Equipo de Sonido Minicomponente Panasonic SC-AKX110PSK 300W', image: premioEquipoSonido },
+  { id: "Super Pack Linea Vet", name: 'Super Pack Linea Vet MAXFL ', description: 'Super Pack de Linea Veterinaria Para Mascotas', image: premioPackLineaVet },
+  { id: "Pack Linea Vet", name: 'Pack Linea Vet MAXFL', description: 'Pack de Linea Veterinaria Para Mascotas', image: premioSuperPack },
 ];
 
 export const selfiePrizes: Prize[] = [
