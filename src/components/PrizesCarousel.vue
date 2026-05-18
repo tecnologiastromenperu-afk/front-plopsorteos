@@ -42,7 +42,7 @@ const scrollNext = () => emblaApi.value?.scrollNext();
 </script>
 
 <template>
-  <section class="mt-0 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm">
+  <section class="mt-45 rounded-[24px] border border-white/10 bg-[#090b0fcc] backdrop-blur-sm ">
     <div class="flex justify-between items-center px-4 md:px-6 py-4">
       <div class="flex items-center gap-3">
         <div class="w-10 h-10 rounded-xl bg-white/10 flex items-center justify-center border border-white/15">

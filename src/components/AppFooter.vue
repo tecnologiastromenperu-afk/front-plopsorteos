@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Facebook, Instagram, Mail, Phone } from 'lucide-vue-next'
+import { Facebook, Instagram, Mail, Phone, BookOpen } from 'lucide-vue-next'
 import logo from '@/assets/logo.png'
 
 const emit = defineEmits<{
@@ -99,6 +99,18 @@ const emit = defineEmits<{
 
         <!-- Logo y copyright -->
         <div class="flex flex-col items-center md:items-start gap-2">
+          <a
+            href="https://deliveryplop.com/pages/libro-de-reclamaciones"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex flex-col items-center text-gray-300 hover:text-white transition-colors"
+            title="Libro de reclamaciones"
+            aria-label="Libro de reclamaciones"
+          >
+            
+            <BookOpen class="w-15 h-15 mb-1" />
+            <span class="text-xs text-gray-300 mb-7">Libro de reclamaciones</span>
+          </a>
           <img :src="logo" alt="Logo Plopsorteos.com" class="h-10" />
           <p class="text-gray-400 text-xs">© 2026 Todos los derechos reservados</p>
           <p class="text-gray-500 text-xs">
