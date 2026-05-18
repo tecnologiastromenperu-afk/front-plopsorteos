@@ -34,6 +34,7 @@ defineProps<{ modelValue: boolean }>()
 const emit = defineEmits<{
   (e: 'update:modelValue', val: boolean): void
   (e: 'open-general-terms'): void
+  (e: 'open-privacy-policy'): void
 }>()
 
 const formData = reactive({
@@ -44,6 +45,7 @@ const formData = reactive({
   phone: '',
   product: '',
   acceptTerms: false,
+  acceptPrivacy: false,
 })
 
 const result = ref<ValidationResponse | null>(null)
@@ -59,7 +61,8 @@ const isFormValid = computed(() =>
     formData.email.trim() &&
     formData.phone.trim() &&
     formData.product &&
-    formData.acceptTerms,
+    formData.acceptTerms &&
+    formData.acceptPrivacy,
   ),
 )
 const reasonMessage = computed(() => {
@@ -208,6 +211,7 @@ const resetForm = () => {
   formData.phone = ''
   formData.product = ''
   formData.acceptTerms = false
+  formData.acceptPrivacy = false
 }
 </script>
 
@@ -317,6 +321,23 @@ const resetForm = () => {
                 terminos y condiciones
               </button>
               y la politica de privacidad
+            </span>
+          </label>
+          <label class="flex items-start gap-3 pt-1">
+            <input
+              v-model="formData.acceptPrivacy"
+              type="checkbox"
+              class="mt-0.5 w-5 h-5 text-[#004f9f] rounded cursor-pointer"
+              required
+            />
+            <span class="text-sm text-gray-700 cursor-pointer">
+              <button
+                type="button"
+                class="text-[#004f9f] font-semibold hover:underline"
+                @click.prevent="emit('open-privacy-policy')"
+              >
+                Autorizo el tratamiento de mis datos personales para fines comerciales y/o publicitarios
+              </button>
             </span>
           </label>
 

@@ -82,7 +82,7 @@ const activeTermsPdfName = computed(() => (activeTerms.value ? termsPdfNames[act
       </template>
     </main>   
     
-    <CodeModal v-model="isModalOpen" @open-general-terms="openTerms('general')" />
+    <CodeModal v-model="isModalOpen" @open-general-terms="openTerms('general')" @open-privacy-policy="openTerms('privacy')" />
     <AppFooter
       @open-general-terms="openTerms('general')"
       @open-second-chance-terms="openTerms('second-chance')"
