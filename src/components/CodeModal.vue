@@ -17,6 +17,7 @@ declare global {
 
 const RECAPTCHA_SITE_KEY = import.meta.env.VITE_RECAPTCHA_SITE_KEY as string
 const API_URL = import.meta.env.VITE_API_URL as string
+const GENERIC_EMAIL = 'sin-correo@maxfl.pe'
 
 type ValidationPrize = {
   type: string
@@ -58,7 +59,6 @@ const isFormValid = computed(() =>
     formData.code.trim() &&
     formData.fullName.trim() &&
     formData.documentId.trim() &&
-    formData.email.trim() &&
     formData.phone.trim() &&
     formData.product &&
     formData.acceptTerms &&
@@ -104,7 +104,11 @@ const resultDescription = computed(() => {
 
 const resultSupportText = computed(() => {
   if (isWinner.value) {
-    return `Nuestro equipo se pondra en contacto al correo ${formData.email} o al WhatsApp ingresado para coordinar la entrega de tu premio.`
+    if (formData.email.trim()) {
+      return `Nuestro equipo se pondra en contacto al correo ${formData.email.trim()} o al WhatsApp ingresado para coordinar la entrega de tu premio.`
+    }
+
+    return 'Nuestro equipo se pondra en contacto al WhatsApp ingresado para coordinar la entrega de tu premio.'
   }
 
   if (result.value?.reason === 'invalid_code') {
@@ -163,7 +167,7 @@ const handleSubmitCode = async () => {
       code: formData.code.trim().toUpperCase(),
       fullName: formData.fullName,
       documentId: formData.documentId,
-      email: formData.email,
+      email: formData.email.trim() || GENERIC_EMAIL,
       phone: formData.phone,
       product: formData.product,
       recaptchaToken,
@@ -272,13 +276,12 @@ const resetForm = () => {
             />
           </div>
           <div>
-            <label class="block text-sm font-semibold text-gray-700 mb-2">Correo electronico *</label>
+            <label class="block text-sm font-semibold text-gray-700 mb-2">Correo electronico (opcional)</label>
             <input
               v-model="formData.email"
               type="email"
-              placeholder="correo@ejemplo.com"
+              placeholder="correo@ejemplo.com (opcional)"
               class="w-full px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#004f9f] focus:border-transparent transition-all"
-              required
             />
           </div>
           <div>
@@ -452,7 +455,7 @@ const resetForm = () => {
 
               <div class="mt-5 rounded-3xl bg-white px-5 py-6 text-center shadow-[0_8px_20px_rgba(0,0,0,0.12)]">
                 <p class="text-xl font-black text-[#111827] sm:text-2xl">
-                  Tu codigo no resulto ganador en esta ocasion
+                  Tu codigo no resulto ganador en esta ocasión!!
                 </p>
               </div>
 

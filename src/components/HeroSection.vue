@@ -6,21 +6,9 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
   <header class="relative w-full h-full flex items-center justify-center z-10">
     <div class="container mx-auto px-8 md:px-8 lg:px-10">
       <div class="max-w-6xl mx-auto text-center translate-y-1 sm:translate-y-12 md:translate-y-0">
-        <h1 class="text-2xl md:text-6xl lg:text-7xl font-black mb-6 leading-tight uppercase opacity-90">
-          
-          <span
-            class="block text-white drop-shadow-2xl -mt-2"
-            style="text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000, 0 0 30px rgba(0, 79, 159, 0.8)"
-          >
-            GANA CON TUS PRODUCTOS FAVORITOS
-          </span>
-      
-        </h1>
-
         <button
           @click="emit('open-modal')"
-          class="bg-gradient-to-r from-[#004f9f] to-[#5C068C] text-white px-12 py-4 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100"
-          style="text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000"
+          class="cta-button bg-linear-to-r from-[#004f9f] to-[#5C068C] text-white px-18 py-6 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100 mt-140"
         >
           ¡INGRESA TU CODIGO!
         </button>
@@ -28,3 +16,41 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
     </div>
   </header>
 </template>
+
+<style scoped>
+.cta-button {
+  position: relative;
+  isolation: isolate;
+  text-shadow: -1.5px -1.5px 0 #000, 1.5px -1.5px 0 #000, -1.5px 1.5px 0 #000, 1.5px 1.5px 0 #000;
+}
+
+.cta-button::before {
+  content: '';
+  position: absolute;
+  inset: -10px;
+  border-radius: 9999px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.85) 0%, rgba(92, 6, 140, 0.5) 45%, rgba(0, 79, 159, 0.25) 70%, rgba(0, 0, 0, 0) 100%);
+  filter: blur(10px);
+  z-index: -1;
+  pointer-events: none;
+  animation: auraPulse 1.8s ease-in-out infinite;
+}
+
+.cta-button:hover::before {
+  animation-duration: 2s;
+  filter: blur(12px);
+}
+
+@keyframes auraPulse {
+  0%,
+  100% {
+    opacity: 0.75;
+    transform: scale(0.98);
+  }
+
+  50% {
+    opacity: 1;
+    transform: scale(1.06);
+  }
+}
+</style>
