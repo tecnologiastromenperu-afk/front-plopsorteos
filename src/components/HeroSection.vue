@@ -8,7 +8,7 @@ const emit = defineEmits<{ (e: 'open-modal'): void }>()
       <div class="max-w-6xl mx-auto text-center translate-y-1 sm:translate-y-12 md:translate-y-0">
         <button
           @click="emit('open-modal')"
-          class="cta-button bg-linear-to-r from-[#004f9f] to-[#5C068C] text-white px-18 py-6 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100 mt-140"
+          class="cta-button bg-linear-to-r from-[#004f9f] to-[#5C068C] text-white px-18 py-6 rounded-full font-black text-lg hover:scale-105 transition-all transform shadow-2xl uppercase tracking-wider border-4 border-white/30 hover:border-white/50 opacity-90 hover:opacity-100 mt-100"
         >
           ¡INGRESA TU CODIGO!
         </button>
